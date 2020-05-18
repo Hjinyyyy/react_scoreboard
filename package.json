@@ -40,5 +40,9 @@
   "devDependencies": {
     "gh-pages": "^2.0.1",
     "node-sass": "^4.11.0"
-  }
+  },
+  "description": "이 프로젝트는 react tutorial 에 사용된 소스입니다.   React Tutorial Blog: https://eastflag.co.kr/react   Demo Site: https://scoreboard.eastflag.co.kr",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC"
 }
