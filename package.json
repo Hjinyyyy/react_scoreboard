@@ -3,46 +3,40 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "axios": "^0.18.0",
-    "bootstrap": "^4.4.1",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
     "classnames": "^2.2.6",
     "lodash": "^4.17.15",
-    "prop-types": "^15.6.2",
-    "rc-pagination": "^1.17.8",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-redux": "^7.1.3",
-    "react-router-dom": "^4.3.1",
-    "react-scripts": "3.2.0",
-    "react-toast-notifications": "^2.4.0",
-    "reactstrap": "^8.2.0",
-    "redux": "^4.0.1"
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
+    "react-scripts": "3.4.1",
+    "redux": "^4.0.5"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "start": "react-scripts start --env.PUBLIC_URL=/public",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "aws-remove": "aws s3 rm s3://eastflag-react-scoreboard/ --recursive",
-    "aws-upload": "aws s3 cp ./build/ s3://eastflag-react-scoreboard/ --recursive"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
-  "devDependencies": {
-    "gh-pages": "^2.0.1",
-    "node-sass": "^4.11.0"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
-  "description": "이 프로젝트는 react tutorial 에 사용된 소스입니다.   React Tutorial Blog: https://eastflag.co.kr/react   Demo Site: https://scoreboard.eastflag.co.kr",
-  "main": "index.js",
-  "author": "",
-  "license": "ISC"
+  "devDependencies": {
+    "node-sass": "^4.14.1"
+  }
 }

@@ -1,32 +1,23 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import _ from 'lodash';
 
-import styles from '../pages/scoreboard/Scoreboard.module.css';
+export const Stats = (props) => {
+  const players = props.players.length;
+  let totalScore = _.sumBy(props.players, 'score');
+  // props.players.forEach(player => totalScore += player.score);
 
-const Stats = ({players}) => {
-  let totalPlayers = players.length;
-  let totalScore = players.reduce((total, player) => total + player.score, 0);
-  
   return (
-    <table className={styles.stats}>
+    <table className="stats">
       <tbody>
       <tr>
         <td>Players:</td>
-        <td>{totalPlayers}</td>
+        <td>{players}</td>
       </tr>
       <tr>
-        <td>Total Points:</td>
+        <td>Total Score:</td>
         <td>{totalScore}</td>
       </tr>
       </tbody>
     </table>
-  )
+  );
 }
-
-Stats.propTypes = {
-  players: PropTypes.arrayOf(PropTypes.shape({
-    score: PropTypes.number
-  }))
-}
-
-export default Stats;

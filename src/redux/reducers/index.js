@@ -1,5 +1,9 @@
 import {combineReducers} from "redux";
-import {playerReducer} from "./players";
-import {heroReducer} from "./heroes";
+import {playerReducer} from "./player";
 
-export const allReducers = combineReducers({playerReducer, heroReducer});
+export const allReducers = combineReducers({
+  playerReducer
+})
+// state = {
+//   playerReducer
+// }

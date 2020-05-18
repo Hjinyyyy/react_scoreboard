@@ -1,46 +1,45 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React from 'react';
 
-import styles from '../pages/scoreboard/Scoreboard.module.css';
+export class Stopwatch extends React.Component {
+  tickRef;
+  state = {
+    isRunning: false,
+    timer: 0
+  }
 
-const Stopwatch = (props) => {
-  let [isRunning, setIsRunning] = useState(false);
-  let [timer, setTimer] = useState(0);
-
-  useInterval(() => {
-    // Your custom logic here
-    if (isRunning) {
-      setTimer(timer + 1);
+  tick = () => {
+    if (this.state.isRunning) {
+      this.setState(prevState => ({
+        timer: prevState.timer + 1
+      }))
     }
-  }, 1000);
+  }
+  // Dom이 렌더링 된 직후에 호출되는 라이프 사이클 메서드
+  // Rest API 호출, 3rd 라이브러리 로딩
+  componentDidMount() {
+    this.tickRef = setInterval(this.tick, 1000);
+  }
 
-  return (
-    <div className={styles.stopwatch}>
-      <h2>Stopwatch</h2>
-      <span  className={styles["stopwatch-time"]}>{timer}</span>
-      <button onClick={() => setIsRunning(!isRunning)}>{isRunning ? 'Stop' : 'Start'}</button>
-      <button onClick={() => setTimer(0)}>Reset</button>
-    </div>
-  )
+  // Dom이 파괴되기 직전에 호출되는 라이프사이클 메서드
+  // 리소스 해제
+  componentWillUnmount() {
+    clearInterval(this.tickRef);
+  }
+
+  handleStopwatch = () => {
+    this.setState(prevState => {
+      this.setState({isRunning: !prevState.isRunning});
+    })
+  }
+
+  render() {
+    return (
+      <div className="stopwatch">
+        <h2>Stopwatch</h2>
+        <span className="stopwatch-time">{this.state.timer}</span>
+        <button onClick={this.handleStopwatch}>{this.state.isRunning ? 'Stop' : 'Start'}</button>
+        <button>Reset</button>
+      </div>
+    );
+  }
 }
-
-function useInterval(callback, delay) {
-  const savedCallback = useRef();
-
-  // Remember the latest callback.
-  useEffect(() => {
-    savedCallback.current = callback;
-  }, [callback]);
-
-  // Set up the interval.
-  useEffect(() => {
-    function tick() {
-      savedCallback.current();
-    }
-    if (delay !== null) {
-      let id = setInterval(tick, delay);
-      return () => clearInterval(id);
-    }
-  }, [delay]);
-}
-
-export default Stopwatch;
